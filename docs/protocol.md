@@ -33,7 +33,7 @@ All request messages have the following structure:
 {
   "action": "action_name",
   "data": {
-    // action'a özgü parametreler
+    // action specific parameters
   }
 }
 ```
@@ -47,7 +47,7 @@ All response messages have the following structure:
   "status": "success|error",
   "message": "Status açıklaması",
   "data": {
-    // response'a özgü veriler
+    // response specific data
   }
 }
 ```
