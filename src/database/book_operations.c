@@ -1,15 +1,13 @@
 #include "../../include/database/book_operations.h"
 
-int add_book(mongoc_collection_t *collection, char* title, char* author, char* isbn, int publication_year, int pages, char* description, char* publisher, char* language, char* cover_url) {
+int add_book(mongoc_collection_t *collection, char* title, char* author, char* isbn, int publication_year, int pages, char* publisher, char* cover_url) {
     bson_t *doc = BCON_NEW(
         "title", BCON_UTF8(title),
         "author", BCON_UTF8(author),
         "isbn", BCON_UTF8(isbn),
         "publication_year", BCON_INT32(publication_year),
         "pages", BCON_INT32(pages),
-        "description", BCON_UTF8(description),
         "publisher", BCON_UTF8(publisher),
-        "language", BCON_UTF8(language),
         "cover_url", BCON_UTF8(cover_url)
     );
 
@@ -60,7 +58,7 @@ void print_book(mongoc_collection_t *collection, const char *id_str) {
     mongoc_cursor_destroy(cursor);
 }
 
-int update_book(mongoc_collection_t *collection, const char *id_str, char* title, char* author, char* isbn, int publication_year, int pages, char* description, char* publisher, char* language, char* cover_url) {
+int update_book(mongoc_collection_t *collection, const char *id_str, char* title, char* author, char* isbn, int publication_year, int pages, char* publisher, char* cover_url) {
     bson_oid_t oid;
     bson_oid_init_from_string(&oid, id_str);
 
@@ -74,9 +72,7 @@ int update_book(mongoc_collection_t *collection, const char *id_str, char* title
         "isbn", BCON_UTF8(isbn),
         "publication_year", BCON_INT32(publication_year),
         "pages", BCON_INT32(pages),
-        "description", BCON_UTF8(description),
         "publisher", BCON_UTF8(publisher),
-        "language", BCON_UTF8(language),
         "cover_url", BCON_UTF8(cover_url),
         "}"
     );
